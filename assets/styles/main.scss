@@ -1,0 +1,266 @@
+@import "normalize.scss";
+@import "layout.scss";
+@import "variables.scss";
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue Light.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue Regular.otf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue Bold.otf");
+  font-weight: 700;
+}
+
+@mixin prise-style($size,$vertical-align) {
+  font-size: $size;
+  vertical-align: $vertical-align;
+}
+
+
+body {
+  background: $main-background-color;
+  min-width: 327px;
+}
+
+#plans {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 390px;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+
+}
+
+.plan {
+  flex-grow: 1;
+  max-width: 347px;
+  min-width: 327px;
+  height: 631px;
+  padding: 10px;
+  &:hover {
+    max-width: 390px;
+    height: 691px;
+    transition: .3s ease-in;
+    .plan__details {
+      min-height: 345px;
+    }
+    .plan__purchase-btn {
+      bottom: 30px;
+      box-shadow: 2px 4px 18px rgba(253, 141, 123, 0.31);
+      background-color: #fd8d7b;
+      transition: .5s;
+    }
+  }
+
+  &__background {
+    box-shadow: 2px 4px 59px #7a6be7;
+    background-color: #f5f4f9;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .plan__title {
+    height: 246px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+  }
+
+  &__details {
+    display: flex;
+    position: relative;
+    width: 100%;
+    min-height: $description-height;
+    max-height: 365px;
+    background-color: #ffffff;
+    align-self: flex-end;
+    z-index: 1;
+    align-items: center;
+    justify-content: space-around;
+
+    &::before {
+      display: block;
+      position: absolute;
+      width: 100%;
+      max-width: 380px;
+      height: 200px;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      content: '';
+      background: inherit;
+      top: -90px;
+      z-index: -1;
+    }
+
+    ul {
+      z-index: 1;
+      color: #181818;
+      font-family: $text-style-roboto;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 53px;
+      padding: 0;
+
+      li {
+        list-style: none;
+      }
+    }
+
+  }
+// Header price
+  .plan-price {
+    margin-top: 34px;
+    margin-bottom: 24px;
+    width: 60px;
+    height: 44px;
+    font-size: 0;
+    font-family: $text-style-bebasNeue;
+    font-weight: 100;
+
+    & span:before {
+      content: "$";
+      @include prise-style(24px, 12px);
+    }
+
+    & span {
+      @include prise-style(44px, baseline);
+    }
+
+    & span:after {
+      content: "/HR";
+      @include prise-style(16px, 1px);
+    }
+
+  }
+  // end Header price
+
+  // left top corner status
+  .plan-promotion {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    width: 63px;
+    height: 56px;
+    display: flex;
+    align-items: flex-start;
+    .plan-promotion--popular {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      border: none;
+      background-color: #fd8d7b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        color: #ffffff;
+        font-family: $text-style-bebasNeue;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 36px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+    }
+    img {
+      height: 17px;
+      width: 19px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  &--primary .plan__title:after {
+    right: 0;
+    margin-top: -205px;
+    content: url("../images/popular.png");
+    margin-left: 120%;
+  }
+// end left top corner status
+
+  .header-coupon-title {
+    height: 24px;
+    color: #181818;
+    font-family: $text-style-bebasNeue;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+
+  .header-img-logo {
+    margin-top: 66px;
+    z-index: 10;
+  }
+
+// FOOTER block
+  footer {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    &:after {
+      content: "Ordernow &  get 15% Discount";
+      color: #a9a9a9;
+      font-family: $text-style-roboto;
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 53px;
+      position: absolute;
+      bottom: -15px;
+      z-index: 0;
+    }
+    .plan__purchase-btn {
+      width: 203px;
+      height: 54px;
+      box-shadow: 2px 4px 18px rgba(133, 192, 247, 0.31);
+      border-radius: 27px;
+      border: none;
+      position: absolute;
+      bottom: -27px;
+      z-index: 1;
+      outline: none;
+    }
+    .plan__purchase-btn {
+      background-color: #6fcffb;
+      color: #ffffff;
+      font-family: $text-style-bebasNeue;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 53px;
+      &:hover, &:active {
+        text-decoration: none;
+        background-color: #fd7a5d;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 718px) {
+  .plan {
+    &--primary {
+      order: -1;
+    }
+  }
+}
